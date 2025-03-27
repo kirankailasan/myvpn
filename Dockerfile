@@ -46,11 +46,8 @@ RUN \
   rm -rf \
     /tmp/*
 
+# add local files
+COPY /root /
+
 # ports and volumes
 EXPOSE 51820/udp
-
-# 🟢 FIX: Start s6-overlay properly
-ENTRYPOINT ["/init"]
-
-# 🟢 FIX: Keep-alive script runs separately
-CMD ["sh", "-c", "(while true; do curl -s myvpn.onrender.com > /dev/null; sleep 300; done) & wait"]
