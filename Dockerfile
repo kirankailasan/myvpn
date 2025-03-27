@@ -46,11 +46,11 @@ RUN \
   rm -rf \
     /tmp/*
 
-# Remove problematic COPY command
-# COPY /root /
-
 # ports and volumes
 EXPOSE 51820/udp
 
-# Keep-alive script to prevent shutdown
-CMD ["sh", "-c", "while true; do curl -s myvpn.onrender.com > /dev/null; sleep 300; done & exec /init"]
+# 🟢 FIX: Start s6-overlay properly
+ENTRYPOINT ["/init"]
+
+# 🟢 FIX: Keep-alive script runs separately
+CMD ["sh", "-c", "(while true; do curl -s myvpn.onrender.com > /dev/null; sleep 300; done) & wait"]
