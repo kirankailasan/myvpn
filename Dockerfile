@@ -47,7 +47,7 @@ RUN \
     /tmp/*
 
 # add local files
-COPY /root /
+COPY . /
 
 # ports and volumes
 EXPOSE 51820/udp
