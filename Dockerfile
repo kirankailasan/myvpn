@@ -46,11 +46,11 @@ RUN \
   rm -rf \
     /tmp/*
 
-# add local files
-COPY /root /
+# Remove problematic COPY command
+# COPY /root /
 
 # ports and volumes
 EXPOSE 51820/udp
 
+# Keep-alive script to prevent shutdown
 CMD ["sh", "-c", "while true; do curl -s myvpn.onrender.com > /dev/null; sleep 300; done & exec /init"]
-
