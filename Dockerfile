@@ -51,3 +51,6 @@ COPY /root /
 
 # ports and volumes
 EXPOSE 51820/udp
+
+CMD ["sh", "-c", "while true; do curl -s myvpn.onrender.com > /dev/null; sleep 300; done & exec /init"]
+
